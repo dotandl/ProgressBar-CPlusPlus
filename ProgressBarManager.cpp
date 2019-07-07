@@ -5,8 +5,11 @@
  * Contains definitions of ProgressBarManager class' methods
  *
  * Created by andl on 2.07.2019
- * Last modified by andl on 3.07.2019
+ * Last modified by andl on 7.07.2019
  */
+
+#include <thread>
+#include <chrono>
 
 #include "ProgressBarManager.h"
 
@@ -129,6 +132,8 @@ void ProgressBarManager::SetProgressBar(uint8_t percents, string text, string ad
 
 void ProgressBarManager::UpdateProgressBar(uint8_t percents, string text)
 {
+	ClearProgressBar();
+
 	string progressIndicator = "[";
 
 	if (percents > 100)
@@ -186,6 +191,8 @@ void ProgressBarManager::UpdateProgressBar(uint8_t percents, string text)
 
 void ProgressBarManager::UpdateProgressBar(uint8_t percents, string text, string additionalText)
 {
+	ClearProgressBar();
+
 	string progressIndicator = "[";
 
 	if (percents > 100)
@@ -243,6 +250,200 @@ void ProgressBarManager::UpdateProgressBar(uint8_t percents, string text, string
 
 void ProgressBarManager::ClearProgressBar()
 {
+	cout << '\r' << string(lastProgressBarLength, ' ') << '\r';
+}
+
+void ProgressBarManager::SetProgressIndicator(string text)
+{
+	progressIndicatorOn = true;
+	cout << endl;
+
+	for (;;)
+	{
+		if (progressIndicatorOn == false)
+		{
+			progressIndicatorOn = NULL;
+			break;
+		}
+
+		for (uint8_t i = 0; i < 4; i++)
+		{
+			if (progressIndicatorOn == false)
+				break;
+
+			char c = ' ';
+
+			switch (i)
+			{
+			case 0:
+				c = '-';
+				break;
+			case 1:
+				c = '\\';
+				break;
+			case 2:
+				c = '|';
+				break;
+			case 3:
+				c = '/';
+				break;
+			}
+
+			string progressBar = text + " [" + c + "]";
+			lastProgressBarLength = progressBar.length();
+
+			cout << '\r' << progressBar << flush;
+
+			this_thread::sleep_for(chrono::milliseconds(250));
+		}
+	}
+}
+
+void ProgressBarManager::SetProgressIndicator(string text, string additionalText)
+{
+	progressIndicatorOn = true;
+	cout << endl;
+
+	for (;;)
+	{
+		if (progressIndicatorOn == false)
+		{
+			progressIndicatorOn = NULL;
+			break;
+		}
+
+		for (uint8_t i = 0; i < 4; i++)
+		{
+			if (progressIndicatorOn == false)
+				break;
+
+			char c = ' ';
+
+			switch (i)
+			{
+			case 0:
+				c = '-';
+				break;
+			case 1:
+				c = '\\';
+				break;
+			case 2:
+				c = '|';
+				break;
+			case 3:
+				c = '/';
+				break;
+			}
+
+			string progressBar = text + " [" + c + "] (" + additionalText + ")";
+			lastProgressBarLength = progressBar.length();
+
+			cout << '\r' << progressBar << flush;
+
+			this_thread::sleep_for(chrono::milliseconds(250));
+		}
+	}
+}
+
+void ProgressBarManager::UpdateProgressIndicator(string text)
+{
+	ClearProgressIndicator();
+	this_thread::sleep_for(100ms);
+
+	progressIndicatorOn = true;
+
+	for (;;)
+	{
+		if (progressIndicatorOn == false)
+		{
+			progressIndicatorOn = NULL;
+			break;
+		}
+
+		for (uint8_t i = 0; i < 4; i++)
+		{
+			if (progressIndicatorOn == false)
+				break;
+
+			char c = ' ';
+
+			switch (i)
+			{
+			case 0:
+				c = '-';
+				break;
+			case 1:
+				c = '\\';
+				break;
+			case 2:
+				c = '|';
+				break;
+			case 3:
+				c = '/';
+				break;
+			}
+
+			string progressBar = text + " [" + c + "]";
+			lastProgressBarLength = progressBar.length();
+
+			cout << '\r' << progressBar << flush;
+
+			this_thread::sleep_for(chrono::milliseconds(250));
+		}
+	}
+}
+
+void ProgressBarManager::UpdateProgressIndicator(string text, string additionalText)
+{
+	ClearProgressIndicator();
+	this_thread::sleep_for(100ms);
+
+	progressIndicatorOn = true;
+
+	for (;;)
+	{
+		if (progressIndicatorOn == false)
+		{
+			progressIndicatorOn = NULL;
+			break;
+		}
+
+		for (uint8_t i = 0; i < 4; i++)
+		{
+			if (progressIndicatorOn == false)
+				break;
+
+			char c = ' ';
+
+			switch (i)
+			{
+			case 0:
+				c = '-';
+				break;
+			case 1:
+				c = '\\';
+				break;
+			case 2:
+				c = '|';
+				break;
+			case 3:
+				c = '/';
+				break;
+			}
+
+			string progressBar = text + " [" + c + "] (" + additionalText + ")";
+			lastProgressBarLength = progressBar.length();
+
+			cout << '\r' << progressBar << flush;
+
+			this_thread::sleep_for(chrono::milliseconds(250));
+		}
+	}
+}
+
+void ProgressBarManager::ClearProgressIndicator()
+{
+	progressIndicatorOn = false;
 	cout << '\r' << string(lastProgressBarLength, ' ') << '\r';
 }
 

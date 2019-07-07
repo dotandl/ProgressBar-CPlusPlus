@@ -5,7 +5,7 @@
  * Contains declaration of ProgressBarManager class
  *
  * Created by andl on 2.07.2019
- * Last modified by andl on 3.07.2019
+ * Last modified by andl on 7.07.2019
  */
 
 #pragma once
@@ -34,6 +34,12 @@ private:
 	 * Variable storing length of last-showed progress bar
 	 */
 	uint8_t lastProgressBarLength;
+
+	/*
+	 * Field: progressIndicatorOn
+	 * Variable showing state of progress indicator working
+	 */
+	bool progressIndicatorOn = NULL;
 
 public:
 	/*
@@ -112,6 +118,55 @@ public:
 	 * Method clearing a progress bar
 	 */
 	void ClearProgressBar();
+
+	/*
+	 * Method: SetProgressIndicator
+	 * Method displaying a progress indicator
+	 * ======================================
+	 * Arguments:
+	 * text: Text which will be displayed at
+	 *       the start of widget
+	 */
+	void SetProgressIndicator(string text);
+
+	/*
+	 * Method: SetProgressIndicator
+	 * Method displaying a progress indicator with additional text
+	 * ===========================================================
+	 * Arguments:
+	 * text: Text which will be displayed at the start of widget
+	 * additionalText: Text which will be displayed in brackets as
+	 *                 additional information
+	 */
+	void SetProgressIndicator(string text, string additionalText);
+
+	/*
+	 * Method: UpdateProgressIndicator
+	 * Method updating text on progress indicator
+	 * ==========================================
+	 * Arguments:
+	 * text: Text which will be displayed at the
+	 *       start of widget
+	 */
+	void UpdateProgressIndicator(string text);
+
+	/*
+	 * Method: UpdateProgressIndicator
+	 * Method updating text and additional text on progress indicator
+	 * ==============================================================
+	 * Arguments:
+	 * text: Text which will be displayed at the start of widget
+	 * additionalText: Text which will be displayed in brackets as
+	 *                 additional information
+	 */
+	void UpdateProgressIndicator(string text, string additionalText);
+
+	/*
+	 * Method: ClearProgressIndicator
+	 * Method clearing a progress indicator
+	 */
+	void ClearProgressIndicator();
+
 };
 
 }
