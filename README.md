@@ -2,7 +2,7 @@
 Simple CLI progress bar library for c++
 
 ## Documentation
-See (ProgressBarManager.h)[ProgressBarManager.h] for functions' declarations.
+See [ProgressBarManager.h](ProgressBarManager.h) for functions' declarations.
 
 ## Change Log
 - 1.0
