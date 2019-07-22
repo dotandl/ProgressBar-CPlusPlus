@@ -3,7 +3,7 @@
 ## Files
 - [ProgressBar.h](#ProgressBar.h)  
 Main library's header file
-- [ProgressBarManager.h/ProgressBarManager.cpp](#ProgressBarManager.h/ProgressBarManager.cpp)  
+- [ProgressBarManager.h/ProgressBarManager.cpp](#ProgressBarManagerhProgressBarManagercpp)  
 Header and Source files contain `ProgressBarManager` class
 
 ## ProgressBar.h
