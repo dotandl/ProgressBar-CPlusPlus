@@ -1,7 +1,7 @@
 # Files documentation for Progress Bar for C++
 
 ## Files
-- [ProgressBar.h](#ProgressBar.h)  
+- [ProgressBar.h](#ProgressBarh)  
 Main library's header file
 - [ProgressBarManager.h/ProgressBarManager.cpp](#ProgressBarManagerhProgressBarManagercpp)  
 Header and Source files contain `ProgressBarManager` class
