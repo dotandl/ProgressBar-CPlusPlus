@@ -8,8 +8,5 @@ See [documentation](docs/documentation.md).
 - 1.0
     - First release
 
-## License
-This project is licensed under the MIT License
-
 ## Authors
 - [andl](https://github.com/dotandl)
