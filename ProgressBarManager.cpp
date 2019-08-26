@@ -5,13 +5,14 @@
  * Contains definitions of ProgressBarManager class' methods
  *
  * Created by andl on 2.07.2019
- * Last modified by andl on 7.07.2019
+ * Last modified by andl on 26.08.2019
  */
 
+#include "ProgressBarManager.h"
+
+#include <string>
 #include <thread>
 #include <chrono>
-
-#include "ProgressBarManager.h"
 
 namespace ProgressBar
 {

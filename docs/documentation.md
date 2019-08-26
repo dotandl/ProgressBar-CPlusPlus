@@ -1,24 +1,33 @@
 # Documentation for Progress Bar for C++
 
 ## Compilation
-I created Makefiles for ProgressBar so You can compile this library very easily, you have to type just:
+I created Makefiles for this project, so compilation is very simple. You need to type:
 ```shell
-$ make
+$ make -f <platform>.mk
+```
+where `<platform>` is the name of OS you're using. List of available platforms:
+- `windows` - Windows MSVC
+- `macos` - macOS Clang/LLVM
+- `linux` - Linux gcc
+
+### Clean
+To clean the project you need to type the same command you'd run to compile, but with `clean` ending.
+```shell
+$ make -f <platform>.mk clean
 ```
 
-#### Windows
-There are two ways to compile library on Windows:
-- Using Git Bash  
-  Open (or install if You don't have) Git Bash and type the same command you would enter on other OSs:
-  ```shell
-  $ make
-  ```
-- Using different Makefile  
-  Open cmd and type following command:
-  ```shell
-  > make -f Makefile.win
-  ```
-  If You enter this command you will use a special Makefile for Windows.
+## Library usage
+After compile you should see a `progressbar` folder and 2 folders inside it - `lib` and `include`.
+
+Now you need to include the `include` folder by adding to your **compiler command**:
+- `/I <path/to/progressbar/include/>` - Windows MSVC (cl.exe)
+- `-I<path/to/progressbar/include/>` - macOS Clang/LLVM (clang++)
+- `-I<path/to/progressbar/include/>` - Linux g++ (g++)
+
+Then you need to tell linker use library by adding to your **linker command**:
+- `<path/to/progressbar/lib/progressbar.lib>` - Windows MSVC (cl.exe)
+- `-L<path/to/progressbar/lib/> -lprogressbar` - macOS Clang/LLVM (clang++)
+- `-L<path/to/progressbar/lib/> -lprogressbar` - Linux g++ (g++)
 
 ## Files documentation
 See [files.md](files.md).
@@ -63,7 +72,7 @@ Progress indicator **works asynchronously**.
 Code I used (on picture):
 ```cpp
 ProgressBarManager manager;
-async(launch::async, [&manager]
+future<void> f = async(launch::async, [&manager]
 {
     manager.SetProgressIndicator("This is progress indicator (with marquee effect)");
 });
