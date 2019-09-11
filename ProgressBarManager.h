@@ -5,7 +5,7 @@
  * Contains declaration of ProgressBarManager class
  *
  * Created by andl on 2.07.2019
- * Last modified by andl on 7.07.2019
+ * Last modified by andl on 8.09.2019
  */
 
 #pragma once
@@ -23,12 +23,37 @@ namespace ProgressBar
 {
 
 /*
+ * Enum: ProgressBarType
+ * Enum defining type of Progress Bar
+*/
+enum ProgressBarType
+{
+	/*
+	 * Enum value: classic
+	 * Value telling Progress Bar to don't use any colors (for Unix consoles doesn't support escape sequences)
+	 */
+	classic,
+
+	/*
+	 * Enum value: color
+	 * Value telling Progress Bar to use colors
+	 */
+	color
+};
+
+/*
  * Class: ProgressBarManager
  * Progress bar's management class
  */
 class ProgressBarManager
 {
 private:
+	/*
+	 * Field: type
+	 * Variable storing type of Progress Bar
+	 */
+	ProgressBarType type;
+
 	/*
 	 * Field: lastProgressBarLenght
 	 * Variable storing length of last-showed progress bar
@@ -41,7 +66,28 @@ private:
 	 */
 	bool progressIndicatorOn = NULL;
 
+	/*
+	 * Method: CheckForColorSupport
+	 * Method checking color support
+	 */
+	bool CheckForColorSupport();
+
 public:
+	/*
+	 * Default empty constructor
+	 */
+	ProgressBarManager();
+
+	/*
+	 * Constructor defining type of ProgressBar
+	 * ========================================
+	 * Arguments:
+	 * type: Type of Progress Bar (if terminal
+	 *       doesn't support color, it will be
+	 *       classic)
+	 */
+	ProgressBarManager(ProgressBarType type);
+
 	/*
 	 * Method: SetProgressBar
 	 * Method displaying a progress bar

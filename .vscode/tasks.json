@@ -1,0 +1,36 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Compile",
+			"type": "shell",
+			"windows": {
+			
+				"command": "call vcvars64 && make -f windows.mk"
+			},
+			"osx": {
+				"command": "make -f macos.mk"
+			},
+			"linux": {
+				"command": "make -f linux.mk"
+			},
+			"presentation": { "reveal": "always" },
+			"problemMatcher": [ ]
+		},
+		{
+			"label": "Clean",
+			"type": "shell",
+			"windows": {
+				"command": "call vcvars64 && make -f windows.mk clean"
+			},
+			"osx": {
+				"command": "make -f macos.mk clean"
+			},
+			"linux": {
+				"command": "make -f linux.mk clean"
+			},
+			"presentation": { "reveal": "always" },
+			"problemMatcher": [ ]
+		}
+	]
+}

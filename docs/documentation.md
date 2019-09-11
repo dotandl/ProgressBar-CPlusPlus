@@ -42,6 +42,12 @@ Next import namespace:
 using namespace ProgressBar;
 ```
 
+After that create `ProgressBarManager` class instance:
+```cpp
+ProgressBarManager manager; // It will create class instance for classic progress bar...
+ProgressBarManager manager(ProgressBarType::color); // ...but if You want, you can decide which progress bar type will be created
+```
+
 ### Progress Bar
 ![Progress bar in action](img/ProgressBar.png)
 

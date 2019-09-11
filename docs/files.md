@@ -10,10 +10,35 @@ Header and Source files contain `ProgressBarManager` class
 Includes all library's header files
 
 ## ProgressBarManager.h/ProgressBarManager.cpp
-`class ProgressBarManager` (in `namespace ProgressBar`)
+`enum ProgressBarType` (in `namespace ProgressBar`)  
+Enum defining type of Progress Bar
+
+Values:
+- `classic`  
+   Value telling Progress Bar to don't use any colors (for Unix consoles doesn't support escape sequences)
+- `color`  
+   Value telling Progress Bar to use colors
+
+#
+
+`class ProgressBarManager` (in `namespace ProgressBar`)  
 Progress bar's management class
 
 Members:
+
+- `ProgressBarManager()`
+   Default empty constructor
+
+#
+
+- `ProgressBarManager(ProgressBarType type)`
+   Constructor defining type of ProgressBar
+
+   Arguments:
+   - `type` Type of Progress Bar (if terminal doesn't support color, it will be classic)
+
+#
+
 - `void SetProgressBar(uint8_t percents, string text)`  
    Method displaying a progress bar
 
@@ -45,7 +70,7 @@ Members:
    Exceptions:
    - `out_of_range` Thrown when percents' value is more than 100
 #
-- `void UpdateProgressBar(uint8_t percents, string text, string additionalText)`
+- `void UpdateProgressBar(uint8_t percents, string text, string additionalText)`  
    Method updating a progress bar with additional text
 
    Arguments:
