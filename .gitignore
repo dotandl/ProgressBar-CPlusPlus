@@ -1,2 +1,3 @@
-out/
-progressbar/
+build/
+.vscode/*
+!.vscode/tasks.json

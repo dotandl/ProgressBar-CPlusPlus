@@ -1,38 +1,4 @@
-# Documentation for Progress Bar for C++
-
-## Compilation
-I created Makefiles for this project, so compilation is very simple. You need to type:
-```shell
-$ make -f <platform>.mk
-```
-where `<platform>` is the name of OS you're using. List of available platforms:
-- `windows` - Windows MSVC
-- `macos` - macOS Clang/LLVM
-- `linux` - Linux gcc
-
-### Clean
-To clean the project you need to type the same command you'd run to compile, but with `clean` ending.
-```shell
-$ make -f <platform>.mk clean
-```
-
-## Library usage
-After compile you should see a `progressbar` folder and 2 folders inside it - `lib` and `include`.
-
-Now you need to include the `include` folder by adding to your **compiler command**:
-- `/I <path/to/progressbar/include/>` - Windows MSVC (cl.exe)
-- `-I<path/to/progressbar/include/>` - macOS Clang/LLVM (clang++)
-- `-I<path/to/progressbar/include/>` - Linux g++ (g++)
-
-Then you need to tell linker use library by adding to your **linker command**:
-- `<path/to/progressbar/lib/progressbar.lib>` - Windows MSVC (cl.exe)
-- `-L<path/to/progressbar/lib/> -lprogressbar` - macOS Clang/LLVM (clang++)
-- `-L<path/to/progressbar/lib/> -lprogressbar` - Linux g++ (g++)
-
-## Files documentation
-See [files.md](files.md).
-
-## Usage
+# Usage
 First include library file:
 ```cpp
 #include <ProgressBar.h>
@@ -47,6 +13,10 @@ After that create `ProgressBarManager` class instance:
 ProgressBarManager manager; // It will create class instance for classic progress bar...
 ProgressBarManager manager(ProgressBarType::color); // ...but if You want, you can decide which progress bar type will be created
 ```
+
+`ProgressBarManager` can run in 2 modes: `color` or `classic`.If you specify `color` mode in the constructor, `ProgressBarManager` will check whether user's terminal supports colors and use them, otherwise `classic` mode will be chosen. If you don't specify the mode in the constructor, `classic` mode will be used by default.
+
+On pictures was shown `classic` mode.
 
 ### Progress Bar
 ![Progress bar in action](img/ProgressBar.png)
@@ -72,7 +42,7 @@ There are 3 methods in `ProgressBarManager` which manages the progress indiicato
 - `UpdateProgressIndicator`
 - `ClearProgressIndicator`
 
-To set progress indicator, use `SetProgressIndicator` method. If you want to change text on progress indicator, call `UpdateProgressIndicator` method. To delete call `ClearProgressIndicator`.  
+To set progress indicator, use `SetProgressIndicator` method. If you want to change text on progress indicator, call `UpdateProgressIndicator` method. To delete call `ClearProgressIndicator`.
 Progress indicator **works asynchronously**.
 
 Code I used (on picture):

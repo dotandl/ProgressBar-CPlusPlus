@@ -55,10 +55,10 @@ private:
 	ProgressBarType type;
 
 	/*
-	 * Field: lastProgressBarLenght
+	 * Field: lastProgressBarLength
 	 * Variable storing length of last-showed progress bar
 	 */
-	uint8_t lastProgressBarLength;
+	size_t lastProgressBarLength;
 
 	/*
 	 * Field: progressIndicatorOn

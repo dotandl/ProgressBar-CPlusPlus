@@ -1,14 +1,14 @@
 # Progress Bar for C++
 Simple CLI progress bar library for c++
 
-## Documentation
-See [documentation](docs/documentation.md).
+## Build
+To build make sure you have installed `CMake 3.8.0` or above and type:
+```sh
+$ mkdir build
+$ cd build
+$ cmake .. # You can specify the generator by typing: -G "Name of generator"
+$ cmake --build .
+```
 
-## Change Log
-- 1.0
-    - First release
-- 2.0
-    - Add support for colors
-
-## Authors
-- [andl](https://github.com/dotandl)
+## Docs & usage
+See [Docs](docs/docs.md) & [Usage](docs/usage.md)

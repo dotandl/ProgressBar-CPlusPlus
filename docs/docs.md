@@ -1,27 +1,27 @@
 # Files documentation for Progress Bar for C++
 
 ## Files
-- [ProgressBar.h](#ProgressBarh)  
+- [ProgressBar.h](#ProgressBarh)
 Main library's header file
-- [ProgressBarManager.h/ProgressBarManager.cpp](#ProgressBarManagerhProgressBarManagercpp)  
+- [ProgressBarManager.h/ProgressBarManager.cpp](#ProgressBarManagerhProgressBarManagercpp)
 Header and Source files contain `ProgressBarManager` class
 
 ## ProgressBar.h
 Includes all library's header files
 
 ## ProgressBarManager.h/ProgressBarManager.cpp
-`enum ProgressBarType` (in `namespace ProgressBar`)  
+`enum ProgressBarType` (in `namespace ProgressBar`)
 Enum defining type of Progress Bar
 
 Values:
-- `classic`  
-   Value telling Progress Bar to don't use any colors (for Unix consoles doesn't support escape sequences)
-- `color`  
+- `classic`
+   Value telling Progress Bar to don't use any colors (for Unix consoles that don't support escape sequences)
+- `color`
    Value telling Progress Bar to use colors
 
 #
 
-`class ProgressBarManager` (in `namespace ProgressBar`)  
+`class ProgressBarManager` (in `namespace ProgressBar`)
 Progress bar's management class
 
 Members:
@@ -39,7 +39,7 @@ Members:
 
 #
 
-- `void SetProgressBar(uint8_t percents, string text)`  
+- `void SetProgressBar(uint8_t percents, string text)`
    Method displaying a progress bar
 
    Arguments:
@@ -49,7 +49,7 @@ Members:
    Exceptions:
    - `out_of_range` Thrown when percents' value is more than 100
 #
-- `void SetProgressBar(uint8_t percents, string text, string additionalText)`  
+- `void SetProgressBar(uint8_t percents, string text, string additionalText)`
    Method displaying a progress bar with additional text
 
    Arguments:
@@ -60,7 +60,7 @@ Members:
    Exceptions:
    - `out_of_range` Thrown when percents' value is more than 100
 #
-- `void UpdateProgressBar(uint8_t percents, string text)`  
+- `void UpdateProgressBar(uint8_t percents, string text)`
    Method updating a progress bar
 
    Arguments:
@@ -70,7 +70,7 @@ Members:
    Exceptions:
    - `out_of_range` Thrown when percents' value is more than 100
 #
-- `void UpdateProgressBar(uint8_t percents, string text, string additionalText)`  
+- `void UpdateProgressBar(uint8_t percents, string text, string additionalText)`
    Method updating a progress bar with additional text
 
    Arguments:
@@ -81,34 +81,34 @@ Members:
    Exceptions:
    - `out_of_range` Thrown when percents' value is more than 100
 #
-- `void ClearProgressBar()`  
+- `void ClearProgressBar()`
    Method clearing a progress bar
 #
-- `void SetProgressIndicator(string text)`  
+- `void SetProgressIndicator(string text)`
    Method displaying a progress indicator
 
    Arguments:
    - `text` Text which will be displayed at the start of widget
 #
-- `void SetProgresIndicator(string text, string additionalText)`  
+- `void SetProgresIndicator(string text, string additionalText)`
    Method displaying a progress indicator with additional text
 
    Arguments:
    - `text` Text which will be displayed at the start of widget
    - `additionalText` Text which will be displayed in brackets as additional information
 #
-- `void UpdateProgressIndicator(string text)`  
+- `void UpdateProgressIndicator(string text)`
    Method updating text on progress indicator
 
    Arguments:
    - `text` Text which will be displayed at the start of widget
 #
-- `void UpdateProgressBar(string text, string additionalText)`  
+- `void UpdateProgressBar(string text, string additionalText)`
    Method updating text and additional text on progress indicator
 
    Arguments:
    - `text` Text which will be displayed at the start of widget
    - `additionalText` Text which will be displayed in brackets as additional information
 #
-- `void ClearProgressBar()`  
+- `void ClearProgressBar()`
    Method clearing a progress indicator

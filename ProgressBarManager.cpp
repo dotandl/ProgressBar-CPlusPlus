@@ -32,7 +32,7 @@ bool ProgressBarManager::CheckForColorSupport()
 	{
 		const string terms[] =
 			{ "xterm", "xterm-256", "xterm-256color","vt100", "color", "ansi", "cygwin", "linux" };
-		
+
 		for (const string term : terms)
 		{
 			if (termEnv == term)
@@ -58,7 +58,7 @@ ProgressBarManager::ProgressBarManager(ProgressBarType type) : type(type)
 
 void ProgressBarManager::SetProgressBar(uint8_t percents, string text)
 {
-	string progressIndicator = "["; 
+	string progressIndicator = "[";
 	if (percents > 100)
 		throw out_of_range("Cannot be more than 100 percents!");
 	else if (percents == 0)
@@ -132,11 +132,11 @@ void ProgressBarManager::SetProgressBar(uint8_t percents, string text)
 		int width;
 		scanf("\e[%*d;%dR", &width);
 
-		int startPosition = (width - progressBar.length()) / 2;
-		bool parity = (width - progressBar.length()) %2 == 0;
-		string finalProgressBar = 
+		int startPosition = (width - (int)progressBar.length()) / 2;
+		bool parity = (width - (int)progressBar.length()) %2 == 0;
+		string finalProgressBar =
 			string(startPosition + (parity ? 0 : 1), ' ') +
-			progressBar + 
+			progressBar +
 			string(startPosition, ' ');
 
 		printf("\e[;H\e[30;42m");
@@ -155,8 +155,8 @@ void ProgressBarManager::SetProgressBar(uint8_t percents, string text)
 		WORD colors = bufferInfo.wAttributes;
 		int width = bufferInfo.srWindow.Right - bufferInfo.srWindow.Left + 1;
 
-		int startPosition = (width - progressBar.length()) / 2;
-		bool parity = (width - progressBar.length()) % 2 == 0;
+		int startPosition = (width - (int)progressBar.length()) / 2;
+		bool parity = (width - (int)progressBar.length()) % 2 == 0;
 		string finalProgressBar =
 			string(startPosition + (parity? 0 : 1), ' ') +
 			progressBar +
@@ -164,14 +164,14 @@ void ProgressBarManager::SetProgressBar(uint8_t percents, string text)
 
 		SetConsoleCursorPosition(console, COORD { 0, 0 });
 		SetConsoleTextAttribute(console, BACKGROUND_GREEN | BACKGROUND_INTENSITY);
-		
+
 		cout << finalProgressBar;
 
 		SetConsoleCursorPosition(console, xy);
 		SetConsoleTextAttribute(console, colors);
 #endif
 	}
-	
+
 }
 
 void ProgressBarManager::SetProgressBar(uint8_t percents, string text, string additionalText)
@@ -251,8 +251,8 @@ void ProgressBarManager::SetProgressBar(uint8_t percents, string text, string ad
 		int width;
 		scanf("\e[%*d;%dR", &width);
 
-		int startPosition = (width - progressBar.length()) / 2;
-		bool parity = (width - progressBar.length()) % 2 == 0;
+		int startPosition = (width - (int)progressBar.length()) / 2;
+		bool parity = (width - (int)progressBar.length()) % 2 == 0;
 		string finalProgressBar =
 			string(startPosition + (parity ? 0 : 1), ' ') +
 			progressBar +
@@ -274,8 +274,8 @@ void ProgressBarManager::SetProgressBar(uint8_t percents, string text, string ad
 		WORD colors = bufferInfo.wAttributes;
 		int width = bufferInfo.srWindow.Right - bufferInfo.srWindow.Left + 1;
 
-		int startPosition = (width - progressBar.length()) / 2;
-		bool parity = (width - progressBar.length()) % 2 == 0;
+		int startPosition = (width - (int)progressBar.length()) / 2;
+		bool parity = (width - (int)progressBar.length()) % 2 == 0;
 		string finalProgressBar =
 			string(startPosition + (parity? 0 : 1), ' ') +
 			progressBar +
@@ -283,7 +283,7 @@ void ProgressBarManager::SetProgressBar(uint8_t percents, string text, string ad
 
 		SetConsoleCursorPosition(console, COORD { 0, 0 });
 		SetConsoleTextAttribute(console, BACKGROUND_GREEN | BACKGROUND_INTENSITY);
-		
+
 		cout << finalProgressBar;
 
 		SetConsoleCursorPosition(console, xy);
@@ -535,7 +535,7 @@ void ProgressBarManager::SetProgressIndicator(string text)
 				ttysave = ttystate;
 				ttystate.c_lflag &= ~(ICANON | ECHO);
 				ttystate.c_cc[VMIN] = 6;
-				tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);	
+				tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
 
 				printf("\e[6n");
 				int y, x;
@@ -545,8 +545,8 @@ void ProgressBarManager::SetProgressIndicator(string text)
 				int width;
 				scanf("\e[%*d;%dR", &width);
 
-				int startPosition = (width - progressBar.length()) / 2;
-				bool parity = (width - progressBar.length()) % 2 == 0;
+				int startPosition = (width - (int)progressBar.length()) / 2;
+				bool parity = (width - (int)progressBar.length()) % 2 == 0;
 				string finalProgressBar =
 					string(startPosition + (parity ? 0 : 1), ' ') +
 					progressBar +
@@ -567,9 +567,9 @@ void ProgressBarManager::SetProgressIndicator(string text)
 				COORD xy = bufferInfo.dwCursorPosition;
 				WORD colors = bufferInfo.wAttributes;
 				int width = bufferInfo.srWindow.Right - bufferInfo.srWindow.Left + 1;
-				
-				int startPosition = (width - progressBar.length()) / 2;
-				bool parity = (width - progressBar.length()) % 2 == 0;
+
+				int startPosition = (width - (int)progressBar.length()) / 2;
+				bool parity = (width - (int)progressBar.length()) % 2 == 0;
 				string finalProgressBar =
 					string(startPosition + (parity ? 0 : 1), ' ') +
 					progressBar +
@@ -584,7 +584,7 @@ void ProgressBarManager::SetProgressIndicator(string text)
 				SetConsoleTextAttribute(console, colors);
 #endif
 			}
-			
+
 			this_thread::sleep_for(chrono::milliseconds(250));
 		}
 	}
@@ -644,7 +644,7 @@ void ProgressBarManager::SetProgressIndicator(string text, string additionalText
 				ttysave = ttystate;
 				ttystate.c_lflag &= ~(ICANON | ECHO);
 				ttystate.c_cc[VMIN] = 6;
-				tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);	
+				tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
 
 				printf("\e[6n");
 				int y, x;
@@ -654,8 +654,8 @@ void ProgressBarManager::SetProgressIndicator(string text, string additionalText
 				int width;
 				scanf("\e[%*d;%dR", &width);
 
-				int startPosition = (width - progressBar.length()) / 2;
-				bool parity = (width - progressBar.length()) % 2 == 0;
+				int startPosition = (width - (int)progressBar.length()) / 2;
+				bool parity = (width - (int)progressBar.length()) % 2 == 0;
 
 				string finalProgressBar =
 					string(startPosition + (parity ? 0 : 1), ' ') +
@@ -677,9 +677,9 @@ void ProgressBarManager::SetProgressIndicator(string text, string additionalText
 				COORD xy = bufferInfo.dwCursorPosition;
 				WORD colors = bufferInfo.wAttributes;
 				int width = bufferInfo.srWindow.Right - bufferInfo.srWindow.Left + 1;
-				
-				int startPosition = (width - progressBar.length()) / 2;
-				bool parity = (width - progressBar.length()) % 2 == 0;
+
+				int startPosition = (width - (int)progressBar.length()) / 2;
+				bool parity = (width - (int)progressBar.length()) % 2 == 0;
 				string finalProgressBar =
 					string(startPosition + (parity ? 0 : 1), ' ') +
 					progressBar +
@@ -753,7 +753,7 @@ void ProgressBarManager::UpdateProgressIndicator(string text)
 	{
 		SetProgressIndicator(text);
 	}
-	
+
 }
 
 void ProgressBarManager::UpdateProgressIndicator(string text, string additionalText)
@@ -809,13 +809,13 @@ void ProgressBarManager::UpdateProgressIndicator(string text, string additionalT
 	{
 		SetProgressIndicator(text, additionalText);
 	}
-	
+
 }
 
 void ProgressBarManager::ClearProgressIndicator()
 {
 	progressIndicatorOn = false;
-	
+
 	if (type == ProgressBarType::classic)
 		cout << '\r' << string(lastProgressBarLength, ' ') << '\r';
 	else
@@ -828,7 +828,7 @@ void ProgressBarManager::ClearProgressIndicator()
 		ttysave = ttystate;
 		ttystate.c_lflag &= ~(ICANON | ECHO);
 		ttystate.c_cc[VMIN] = 6;
-		tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);	
+		tcsetattr(STDIN_FILENO, TCSANOW, &ttystate);
 
 		printf("\e[6n");
 		int y, x;
